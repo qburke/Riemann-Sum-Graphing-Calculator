@@ -26,6 +26,7 @@ for i, mtd in enumerate(hg_mtds):
     value=i).pack(anchor=tk.W)
 
 # Graph it! Button
+# Error field
 
 # function in math type
 # graph of function with rectangles
