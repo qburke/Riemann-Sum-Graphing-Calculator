@@ -1,4 +1,4 @@
-import tkinter as tk
+from tkinter import * as tk
 
 root = tk.Tk()
 
@@ -6,6 +6,12 @@ hg_mtd = tk.IntVar()
 hg_mtd.set(0)
 
 hg_mtds = ["Left", "Right", "Midpoint"]
+
+# function
+# upper bound
+# lower bound
+# n (sub-intervals)
+# width of sub-intervals
 
 tk.Label(root,
   text="Select a height generation method:",
@@ -18,5 +24,10 @@ for i, mtd in enumerate(hg_mtds):
     padx=20
     variable=hg_mtd,
     value=i).pack(anchor=tk.W)
+
+# Graph it!
+
+# function in math type
+# graph of function with rectangles
 
 root.mainloop()
