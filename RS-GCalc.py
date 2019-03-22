@@ -32,3 +32,6 @@ for i, mtd in enumerate(hg_mtds):
 # graph of function with rectangles
 
 root.mainloop()
+
+
+# Note: pyinstaller to make exe
