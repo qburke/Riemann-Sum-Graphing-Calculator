@@ -25,7 +25,7 @@ for i, mtd in enumerate(hg_mtds):
     variable=hg_mtd,
     value=i).pack(anchor=tk.W)
 
-# Graph it!
+# Graph it! Button
 
 # function in math type
 # graph of function with rectangles
