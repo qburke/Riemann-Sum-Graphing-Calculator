@@ -4,10 +4,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import parser
+import math # not working
 
 def func_parser(f):
-    st = parser.expr(func_fld.get())
-    code = st.compile('file.py')
+    code = parser.expr(func_fld.get()).compile()
     return lambda x : eval(code)
 
 def graph_sum():
