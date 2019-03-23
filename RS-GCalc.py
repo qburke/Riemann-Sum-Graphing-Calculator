@@ -10,7 +10,6 @@ def graph_sum():
   b = int(upr_bnd_fld.get())
   a = int(lwr_bnd_fld.get())
   n = int(sub_int_fld.get())
-  dx = int(int_wid_fld.get())
   f = func_parser(func_fld.get())
   
   x = np.linspace(a,b,n+1)
@@ -56,11 +55,6 @@ lwr_bnd_fld.pack()
 Label(master, text="Sub-Intervals (n):").pack()
 sub_int_fld = Entry(master)
 sub_int_fld.pack()
-
-# Interval Width
-Label(master, text="Interval Width (dx):").pack()
-int_wid_fld = Entry(master)
-int_wid_fld.pack()
 
 # Height Generation Method
 hg_mtd = tk.IntVar()
