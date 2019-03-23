@@ -100,6 +100,4 @@ tk.Label(dash, text="Please enter the required information.").pack()
 
 # function in math type?
 
-# graph of function with rectangles
-
 root.mainloop()
