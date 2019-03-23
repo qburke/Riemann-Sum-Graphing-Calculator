@@ -20,14 +20,14 @@ def graph_sum():
   
   plt.figure(figsize=(15,5))
   plt.plot(X,Y,'b')
-  if hg_mtd == 0:
+  if hg_mtd == 0: # Left Riemann
     x = x[:-1]
     y = y[:-1]
-  elif hg_mtd == 1:
+  elif hg_mtd == 1: # Right Riemann
     x = x[1:]
     y = y[1:]
-  elif hg_mtd == 2:
-    x = (x[:-1] + x[1:])/2 # Midpoints
+  elif hg_mtd == 2: # Midpoint
+    x = (x[:-1] + x[1:])/2
     y = f(x_mid)
   plt.plot(x,y,'b.',markersize=8)
   plt.bar(x,y,width=(b-a)/N,alpha=0.2,align='edge',edgecolor='b')
