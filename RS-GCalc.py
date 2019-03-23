@@ -3,9 +3,12 @@ import Tkinter as tk
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import parser
 
 def func_parser(f):
-    return lambda x : 1/x
+    st = parser.expr(func_fld.get())
+    code = st.compile('file.py')
+    return lambda x : eval(code)
 
 def graph_sum():
     global g_frame
@@ -58,7 +61,7 @@ g_frame = tk.Frame(root)
 g_frame.pack(side=tk.RIGHT)
 
 # Function
-tk.Label(dash, text="Function:").pack()
+tk.Label(dash, text="Function (in terms of x):").pack()
 func_fld = tk.Entry(dash)
 func_fld.pack()
 
