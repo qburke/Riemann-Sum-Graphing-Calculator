@@ -1,3 +1,4 @@
 https://glowingpython.blogspot.com/2011/04/how-to-plot-function-using-matplotlib.html
 https://www.python-course.eu/tkinter_entry_widgets.php
 https://www.python-course.eu/tkinter_layout_management.php
+https://matplotlib.org/gallery/user_interfaces/embedding_in_tk_canvas_sgskip.html
