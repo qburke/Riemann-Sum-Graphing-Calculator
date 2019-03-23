@@ -98,6 +98,4 @@ tk.Button(dash, text="Graph It!", command=graph_sum).pack()
 # Error field
 tk.Label(dash, text="Please enter the required information.").pack()
 
-# function in math type?
-
 root.mainloop()
