@@ -1,9 +1,32 @@
 # Quin Burke 2019
 from tkinter import * as tk
+import numpy as np
+import matplotlib.pyplot as plt
+
+def func_parser(f):
+  return lambda x : x
 
 def graph_sum():
-  upr_bnd_fld.get()
-
+  b = int(upr_bnd_fld.get())
+  a = int(lwr_bnd_fld.get())
+  n = int(sub_int_fld.get())
+  dx = int(int_wid_fld.get())
+  f = func_parser(func_fld.get())
+  
+  x = np.linspace(a,b,n+1)
+  y = f(x)
+  
+  X = np.linspace(a,b,100)
+  Y = f(X)
+  
+  plt.figure(figsize=(15,5))
+  plt.plot(X,Y,'b')
+  x_left = x[:-1]
+  y_left = y[:-1]
+  plt.plot(x_left,y_left,'b.',markersize=8)
+  plt.bar(x_left,y_left,width=(b-a)/N,alpha=0.2,align='edge',edgecolor='b')
+  plt.title('Left Riemann Sum with {} Sub-Intervals'.format(n)
+  
 root = tk.Tk()
 
 hg_mtd = tk.IntVar()
