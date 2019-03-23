@@ -12,25 +12,25 @@ def graph_sum():
   n = int(sub_int_fld.get())
   f = func_parser(func_fld.get())
   
-  x = np.linspace(a,b,n+1)
-  y = f(x)
+  x_dscr = np.linspace(a,b,n+1)
+  y_dscr = f(x)
   
-  X = np.linspace(a,b,100)
-  Y = f(X)
+  x_cont = np.linspace(a,b,100)
+  y_cont = f(X)
   
   plt.figure(figsize=(15,5))
-  plt.plot(X,Y,'b')
+  plt.plot(x_cont,y_cont,'b')
   if hg_mtd == 0: # Left Riemann
-    x = x[:-1]
-    y = y[:-1]
+    x = x_dscr[:-1]
+    y = y_dscr[:-1]
   elif hg_mtd == 1: # Right Riemann
-    x = x[1:]
-    y = y[1:]
+    x = x_dscr[1:]
+    y = y_dscr[1:]
   elif hg_mtd == 2: # Midpoint
-    x = (x[:-1] + x[1:])/2
-    y = f(x_mid)
+    x = (x_dscr[:-1] + x_dscr[1:])/2
+    y = f(x)
   plt.plot(x,y,'b.',markersize=8)
-  plt.bar(x,y,width=(b-a)/N,alpha=0.2,align='edge',edgecolor='b')
+  plt.bar(x,y,width=(b-a)/n,alpha=0.2,align='edge',edgecolor='b')
   plt.title('Left Riemann Sum with {} Sub-Intervals'.format(n))
   plt.show() # embed in window later
   
