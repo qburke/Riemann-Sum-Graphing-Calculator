@@ -21,19 +21,21 @@ def graph_sum():
   
   plt.figure(figsize=(15,5))
   plt.plot(X,Y,'b')
-  x_left = x[:-1]
-  y_left = y[:-1]
-  plt.plot(x_left,y_left,'b.',markersize=8)
-  plt.bar(x_left,y_left,width=(b-a)/N,alpha=0.2,align='edge',edgecolor='b')
+  if hg_mtd == 0:
+    x = x[:-1]
+    y = y[:-1]
+  elif hg_mtd == 1:
+    x = x[1:]
+    y = y[1:]
+  elif hg_mtd == 2:
+    x = (x[:-1] + x[1:])/2 # Midpoints
+    y = f(x_mid)
+  plt.plot(x,y,'b.',markersize=8)
+  plt.bar(x,y,width=(b-a)/N,alpha=0.2,align='edge',edgecolor='b')
   plt.title('Left Riemann Sum with {} Sub-Intervals'.format(n))
   plt.show() # embed in window later
   
 root = tk.Tk()
-
-hg_mtd = tk.IntVar()
-hg_mtd.set(0)
-
-hg_mtds = ["Left", "Right", "Midpoint"]
 
 # Function
 Label(master, text="Function:").pack()
@@ -61,6 +63,11 @@ int_wid_fld = Entry(master)
 int_wid_fld.pack()
 
 # Height Generation Method
+hg_mtd = tk.IntVar()
+hg_mtd.set(0)
+
+hg_mtds = ["Left", "Right", "Midpoint"]
+
 tk.Label(root,
   text="Select a height generation method:",
   justfiy=tk.LEFT,
