@@ -25,7 +25,8 @@ def graph_sum():
   y_left = y[:-1]
   plt.plot(x_left,y_left,'b.',markersize=8)
   plt.bar(x_left,y_left,width=(b-a)/N,alpha=0.2,align='edge',edgecolor='b')
-  plt.title('Left Riemann Sum with {} Sub-Intervals'.format(n)
+  plt.title('Left Riemann Sum with {} Sub-Intervals'.format(n))
+  plt.show() # embed in window later
   
 root = tk.Tk()
 
