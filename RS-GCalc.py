@@ -2,6 +2,7 @@
 import Tkinter as tk
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 def func_parser(f):
     return lambda x : 1/x
@@ -14,30 +15,36 @@ def graph_sum():
   
     x_dscr = np.linspace(a,b,n+1)
     y_dscr = f(x_dscr)
-  
-    x_cont = np.linspace(a-1,b+1,100)
+    
+    x_cont = np.linspace(a*.875 if a > 0 else a*1.125, b*1.125 if b > 0 else b*.875,100)
     y_cont = f(x_cont)
-  
-    plt.figure(figsize=(15,5))
-    plt.plot(x_cont,y_cont,'b')
+    
     hg = hg_mtd.get()
     dx = (b-a)/n
     alignment = 'edge'
+    method = 'Left'
     if hg == 0: # Left Riemann
         x_dscr = x_dscr[:-1]
         y_dscr = y_dscr[:-1]
     elif hg == 1: # Right Riemann
         x_dscr = x_dscr[1:]
         y_dscr = y_dscr[1:]
+        method = "Right"
         dx = -(b-a)/n
     elif hg == 2: # Midpoint
         x_dscr = (x_dscr[:-1] + x_dscr[1:])/2
         y_dscr = f(x_dscr)
         alignment='center'
-    plt.plot(x_dscr,y_dscr,'b.',markersize=8)
-    plt.bar(x_dscr,y_dscr,width=dx,alpha=0.2,align=alignment,edgecolor='b')
-    plt.title('Left Riemann Sum with {} Sub-Intervals'.format(n))
-    plt.show() # embed in window later
+        method = "Midpoint"
+
+    figure = plt.Figure(figsize=(4,6), dpi=150)
+    graph = figure.add_subplot(111)
+    graph.plot(x_cont,y_cont,'b')
+    graph.plot(x_dscr,y_dscr,'b.',markersize=8)
+    graph.bar(x_dscr,y_dscr,width=dx,alpha=0.2,align=alignment,edgecolor='b')
+    chart_type = FigureCanvasTkAgg(figure, root)
+    chart_type.get_tk_widget().pack(ipadx=50,ipady=200)
+    graph.set_title(method + ' Riemann Sum with {} Sub-Intervals'.format(n))
   
 root = tk.Tk()
 
