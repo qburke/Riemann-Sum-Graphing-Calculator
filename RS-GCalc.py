@@ -8,6 +8,10 @@ def func_parser(f):
     return lambda x : 1/x
 
 def graph_sum():
+    global g_frame
+    g_frame.destroy()
+    g_frame = tk.Frame(root)
+    g_frame.pack(side=tk.RIGHT)
     b = int(upr_bnd_fld.get())
     a = int(lwr_bnd_fld.get())
     n = int(sub_int_fld.get())
@@ -37,35 +41,40 @@ def graph_sum():
         alignment='center'
         method = "Midpoint"
 
-    figure = plt.Figure(figsize=(4,6), dpi=150)
+    figure = plt.Figure(figsize=(4,5), dpi=125)
     graph = figure.add_subplot(111)
     graph.plot(x_cont,y_cont,'b')
     graph.plot(x_dscr,y_dscr,'b.',markersize=8)
     graph.bar(x_dscr,y_dscr,width=dx,alpha=0.2,align=alignment,edgecolor='b')
-    chart_type = FigureCanvasTkAgg(figure, root)
+    chart_type = FigureCanvasTkAgg(figure, g_frame)
     chart_type.get_tk_widget().pack(ipadx=50,ipady=200)
     graph.set_title(method + ' Riemann Sum with {} Sub-Intervals'.format(n))
-  
+
 root = tk.Tk()
+root.title("Riemann Sum Graphing Calculator")
+dash = tk.Frame(root)
+dash.pack(side=tk.LEFT)
+g_frame = tk.Frame(root)
+g_frame.pack(side=tk.RIGHT)
 
 # Function
-tk.Label(root, text="Function:").pack()
-func_fld = tk.Entry(root)
+tk.Label(dash, text="Function:").pack()
+func_fld = tk.Entry(dash)
 func_fld.pack()
 
 # Lower Bound
-tk.Label(root, text="Lower Bound:").pack()
-lwr_bnd_fld = tk.Entry(root)
+tk.Label(dash, text="Lower Bound:").pack()
+lwr_bnd_fld = tk.Entry(dash)
 lwr_bnd_fld.pack()
 
 # Upper Bound
-tk.Label(root, text="Upper Bound:").pack()
-upr_bnd_fld = tk.Entry(root)
+tk.Label(dash, text="Upper Bound:").pack()
+upr_bnd_fld = tk.Entry(dash)
 upr_bnd_fld.pack()
 
 # Sub-Intervals
-tk.Label(root, text="Sub-Intervals (n):").pack()
-sub_int_fld = tk.Entry(root)
+tk.Label(dash, text="Sub-Intervals (n):").pack()
+sub_int_fld = tk.Entry(dash)
 sub_int_fld.pack()
 
 # Height Generation Method
@@ -74,22 +83,20 @@ hg_mtd.set(0)
 
 hg_mtds = ["Left", "Right", "Midpoint"]
 
-tk.Label(root,
-  text="Select a height generation method:",
-  padx=20).pack()
+tk.Label(dash,
+  text="Select a height generation method:").pack()
 
 for i, mtd in enumerate(hg_mtds):
-    tk.Radiobutton(root,
+    tk.Radiobutton(dash,
                    text=mtd,
-                   padx=20,
                    variable=hg_mtd,
                    value=i).pack(anchor=tk.W)
 
 # Graph It! Button
-tk.Button(root, text="Graph It!", command=graph_sum).pack()
+tk.Button(dash, text="Graph It!", command=graph_sum).pack()
 
 # Error field
-tk.Label(root, text="Please enter the required information.").pack()
+tk.Label(dash, text="Please enter the required information.").pack()
 
 # function in math type?
 
