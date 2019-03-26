@@ -1,10 +1,12 @@
 # Quin Burke 2019
-import Tkinter as tk
+import tkinter as tk
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import parser
-import math # not working
+
+# Importing mathematical functions and constants individually for UX
+from numpy import sin, cos, tan, arcsin, arccos, arctan, log as ln, log10 as log, e, pi
 
 def func_parser(f):
     code = parser.expr(func_fld.get()).compile()
