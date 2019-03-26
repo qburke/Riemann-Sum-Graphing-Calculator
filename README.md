@@ -1,7 +1,7 @@
 # Riemann Sum Graphing Calculator
 Author: Quin Burke
 Version: 1.0.0
-Date: March 26, 2019
+Updated: March 26, 2019
 
 ## Summary
 Graphical program that graphs the inputted function and the rectangular estimators specified by the user.
