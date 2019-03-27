@@ -1,6 +1,6 @@
 # Riemann Sum Graphing Calculator
 Author: Quin Burke
-Version: 1.0.0
+Version: 1.0.2
 Updated: March 27, 2019
 
 ## Summary
