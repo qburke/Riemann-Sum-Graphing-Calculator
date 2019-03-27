@@ -5,13 +5,20 @@ import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import parser
+import re
 
 # Importing mathematical functions and constants individually for UX
 from numpy import sin, cos, tan, arcsin, arccos, arctan, log as ln, log10 as log, e, pi
 
 # Converts user input into a mathematical function
 def func_parser(f):
-    code = parser.expr(func_fld.get().replace('^','**')).compile()
+    func_str = func_fld.get().replace(' ', '')  # clean spaces
+    func_str = func_str.replace('^','**')       # clean exponents
+    func_str = func_str.replace(')(', ')*(')    # clean parenthetical multiplication
+    for match in reversed(re.compile('\d[(\w]|[\w)]\d|\)\w|[xie]\(').findall(func_str)):
+        i=func_str.find(match)
+        func_str = func_str[:i+1] + '*' + func_str[i+1:]
+    code = parser.expr(func_str).compile()
     return lambda x : eval(code)
 
 def graph_sum():
@@ -20,8 +27,8 @@ def graph_sum():
     g_frame.destroy()
     g_frame = tk.Frame(root)
     g_frame.pack(side=tk.RIGHT)
-    b = int(upr_bnd_fld.get())
-    a = int(lwr_bnd_fld.get())
+    b = float(upr_bnd_fld.get())
+    a = float(lwr_bnd_fld.get())
     n = int(sub_int_fld.get())
     f = func_parser(func_fld.get())
   
