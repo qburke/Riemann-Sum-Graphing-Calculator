@@ -1,3 +1,4 @@
+#! /usr/bin/python3
 # Quin Burke 2019
 import tkinter as tk
 import numpy as np
@@ -28,7 +29,7 @@ def graph_sum():
     x_dscr = np.linspace(a,b,n+1)
     y_dscr = f(x_dscr)
     
-    axis_pad = int((a-b)/8)
+    axis_pad = abs(int((a-b)/8))
     x_cont = np.linspace(a - axis_pad, b + axis_pad, 100)
     y_cont = f(x_cont)
     
@@ -61,6 +62,9 @@ def graph_sum():
     
     # Plots the function, the height generators, and the rectangle estimations
     graph.plot(x_cont, y_cont, FUNC_CURVE)
+    graph.plot(x_cont, [0 for _ in range(100)], 'black')
+    if a - axis_pad < 0 and b + axis_pad > 0:
+        graph.plot([0 for _ in range(100)], y_cont, 'black')
     graph.plot(x_dscr, y_dscr, '.b', markersize=8)
     graph.bar(x_dscr, y_dscr, width=dx, alpha=0.2, align=alignment,edgecolor=RECTANGLES)
     chart_type = FigureCanvasTkAgg(figure, g_frame)
