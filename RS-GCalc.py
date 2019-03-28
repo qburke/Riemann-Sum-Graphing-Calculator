@@ -18,6 +18,8 @@ def func_parser(f):
     for match in reversed(re.compile('\d[(\w]|[\w)]\d|\)\w|[xie]\(').findall(func_str)):
         i=func_str.find(match)
         func_str = func_str[:i+1] + '*' + func_str[i+1:]
+    if func_str.find('x') == -1:
+        func_str+='+0*x'
     code = parser.expr(func_str).compile()
     return lambda x : eval(code)
 
